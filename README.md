@@ -1,6 +1,6 @@
 # NoiseCanceler Engineering
 
-> `Noise Canceler` 프로젝트에서 구현한 주요 시스템과 코드, 개발 중 겪은 문제와 해결 과정을 정리했습니다.
+`Noise Canceler` 프로젝트에서 구현한 주요 시스템과 코드, 개발 중 겪은 문제와 해결 과정을 정리했습니다.
 
 ## 프로젝트 소개
 
@@ -15,28 +15,26 @@
 | 사용 기술 | Unity 6 (`6000.0.67f1`), C#, FMOD, Addressables |
 
 ## 저장소 구성
-
-다음 구조로 코드와 문서를 정리할 예정입니다.
-
 ```text
-.
 ├─ README.md
 ├─ src/
 └─ docs/
    ├─ architecture/
-   └─ troubleshooting/
+   └─ trouble-shooting/
 ```
-
 - `src/`: 일부 공개 코드
 - `docs/architecture/`: 구조, 책임 분리, 주요 의사결정
-- `docs/troubleshooting/`: 증상, 원인 분석, 수정 내용, 검증, 회고
+- `docs/trouble-shooting/`: 증상, 원인 분석, 수정 내용, 검증, 회고
 
 ## 주요 내용
 
 ### 시스템 설계
+| 시스템 | 핵심 설계 | 관련 자료 |
+|---|---|---|
 
 ### 문제 해결 기록
-
+| 문제 | 원인 | 해결 방향 | 상세 문서 |
+|---|---|---|---|
 
 ## 공개 범위와 제한
 
