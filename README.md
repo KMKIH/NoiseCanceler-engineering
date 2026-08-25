@@ -31,6 +31,7 @@
 ### 시스템 설계
 | 시스템 | 핵심 설계 | 관련 자료 |
 |---|---|---|
+| 리듬게임 시간 동기화 및 판정 시스템 | FMOD 음악 위치를 단일 기준으로 사용하고, 입력 판정과 판정음을 같은 오디오 시간축에 동기화 | [FMOD 기반 리듬게임 시간 동기화 및 판정 시스템](docs/architecture/rhythm-game-timing-and-judgement-system.md) |
 
 ### 문제 해결 기록 (Trouble Shooting)
 | 문제 | 원인 | 해결 방향 | 상세 문서 |
