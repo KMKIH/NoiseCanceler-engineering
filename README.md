@@ -36,6 +36,7 @@
 ### 문제 해결 기록 (Trouble Shooting)
 | 문제 | 원인 | 해결 방향 | 상세 문서 |
 |---|---|---|---|
+| 음악 시간에 따라 판정 시점이 달라지는 문제 | `AudioSource.time`의 갱신 주기와 렌더링 프레임의 불일치 | DSP 시간을 음악·판정·판정음의 공통 기준으로 사용 | [음악 시간 계산 오차로 인한 판정 정확도 개선](docs/trouble-shooting/rhythm-timing-accuracy.md) |
 
 ## 공개 범위와 제한
 
