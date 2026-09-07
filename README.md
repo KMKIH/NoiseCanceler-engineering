@@ -30,12 +30,19 @@
 ### 시스템 설계
 | 시스템 | 핵심 설계 | 관련 자료 |
 |---|---|---|
+| UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [UI 입력 관리](docs/architecture/ui-focus-stack-system.md) |
 | 리듬게임 시간 동기화 및 판정 시스템 | FMOD 음악 위치를 단일 기준으로 사용하고, 입력 판정과 판정음을 같은 오디오 시간축에 동기화 | [FMOD 기반 리듬게임 시간 동기화 및 판정 시스템](docs/architecture/rhythm-game-timing-and-judgement-system.md) |
 
 ### 문제 해결 기록 (Trouble Shooting)
 | 문제 | 원인 | 해결 방향 | 상세 문서 |
 |---|---|---|---|
 | 음악 시간에 따라 판정 시점이 달라지는 문제 | `AudioSource.time`의 갱신 주기와 렌더링 프레임의 불일치 | DSP 시간을 음악·판정·판정음의 공통 기준으로 사용 | [음악 시간 계산 오차로 인한 판정 정확도 개선](docs/trouble-shooting/rhythm-timing-accuracy.md) |
+## 관련 코드
+
+| 파일 | 역할 |
+|---|---|
+| [FocusManager.cs](src/ui-focus/FocusManager.cs) | Stack 기반 UI 포커스 등록·해제 및 현재 입력 대상 판별 |
+| [IFocusable.cs](src/ui-focus/IFocusable.cs) | 포커스 진입·획득·해제 이벤트 인터페이스 |
 
 ## 공개 범위와 제한
 
