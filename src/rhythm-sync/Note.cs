@@ -199,9 +199,9 @@ public abstract class Note : MonoBehaviour, IComparable<Note>
                 break;
         }
         // (Fade)
-        if (fadeStartTime + fadeDuration > dataManager.SheetData.songPosition / 1000)
+        if (fadeStartTime + fadeDuration > dataManager.SheetData.songPosition / 1000f)
         {
-            var remainTime = fadeStartTime + fadeDuration - dataManager.SheetData.songPosition / 1000;
+            var remainTime = fadeStartTime + fadeDuration - dataManager.SheetData.songPosition / 1000f;
             var targetAlpha = isTransparent ? 0 : 1;
             double curAlpha = 0;
             if (targetAlpha >= 1)

@@ -49,7 +49,7 @@ public class NoteEffectController : MonoBehaviour
     public void FadeOutLeftNotes(float t)
     {
         m_isLeftTransparent = true;
-        m_leftTransparentStartTime = m_dataManager.SheetData.songPosition / 1000;
+        m_leftTransparentStartTime = m_dataManager.SheetData.songPosition / 1000f;
         m_leftTransparentDuration = t;
 
         FadeNotes(DataManager.Left_Line_Index, 0, t);
@@ -57,7 +57,7 @@ public class NoteEffectController : MonoBehaviour
     public void FadeInLeftNotes(float t)
     {
         m_isLeftTransparent = false;
-        m_leftTransparentStartTime = m_dataManager.SheetData.songPosition / 1000;
+        m_leftTransparentStartTime = m_dataManager.SheetData.songPosition / 1000f;
         m_leftTransparentDuration = t;
 
         FadeNotes(DataManager.Left_Line_Index, 1, t);
@@ -65,7 +65,7 @@ public class NoteEffectController : MonoBehaviour
     public void FadeOutRightNotes(float t)
     {
         m_isRightTransparent = true;
-        m_rightTransparentStartTime = m_dataManager.SheetData.songPosition / 1000;
+        m_rightTransparentStartTime = m_dataManager.SheetData.songPosition / 1000f;
         m_rightTransparentDuration = t;
 
         FadeNotes(DataManager.Right_Line_Index, 0, t);
@@ -73,7 +73,7 @@ public class NoteEffectController : MonoBehaviour
     public void FadeInRightNotes(float t)
     {
         m_isRightTransparent = false;
-        m_rightTransparentStartTime = m_dataManager.SheetData.songPosition / 1000;
+        m_rightTransparentStartTime = m_dataManager.SheetData.songPosition / 1000f;
         m_rightTransparentDuration = t;
 
         FadeNotes(DataManager.Right_Line_Index, 1, t);
