@@ -21,13 +21,13 @@ transform.position = startPoint.position + Vector3.left * moveDistance;
 이를 첫 번째 원인으로 추정하고 노트의 생성 시각과 현재 시각을 음원 재생 시간으로 통일했다. 매 프레임 이동량을 더하는 대신, 현재 음원 시간이 전체 이동 구간에서 차지하는 비율로 절대 위치를 계산했다.
 
 ```csharp
-float currentSongTime = SoundManager.Instance.GetMusicProgressInMs();
-float ratio = (currentSongTime - startTime) / takeTime;
+double curTime = dataManager.SheetData.songPosition;
+double ratio = (curTime - startTime) / takeTime;
 
-transform.position = Vector3.Lerp(
+transform.position = Vector3.LerpUnclamped(
     startPoint.position,
     judgePoint.position,
-    ratio);
+    (float)ratio);
 ```
 
 프레임이 잠시 지연되더라도 다음 프레임에는 현재 음원 시간에 해당하는 위치를 다시 계산할 수 있게 됐다. 그러나 수정 후에도 곡 후반으로 갈수록 노트가 앞당겨지는 현상은 개선되지 않았다. 노트와 음원이 서로 다른 시간 기준을 사용하는 코드는 잘못된 구현이었지만, 이번 문제의 근본 원인은 아니었다. 따라서 노트의 출현·판정 시각을 만드는 채보 전처리 과정까지 조사 범위를 넓혔다.
