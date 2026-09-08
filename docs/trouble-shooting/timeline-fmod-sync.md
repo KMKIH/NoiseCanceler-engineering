@@ -42,7 +42,7 @@ FMOD 음원 재생
 - Timeline `PlayableDirector.time`
 - FMOD `EventInstance.getTimelinePosition()`
 
-측정 결과 두 시간 조회값 사이에 최대 20ms의 편차가 관측됐다.
+Debug UI로 곡 전체를 재생하며 두 시간의 편차를 확인했다. 편차는 최대 약 20ms였으며, 곡이 진행되어도 누적되지 않았다.
 
 Timeline의 `DSPClock`은 Unity 오디오 시스템의 시간을 기준으로 동작하지만, FMOD는 별도의 시간축을 사용한다. 두 시스템이 동일한 시간을 공유하지 않기 때문에 제한적인 편차가 발생한 것으로 판단했다.
 
