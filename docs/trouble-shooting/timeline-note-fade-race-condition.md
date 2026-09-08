@@ -30,21 +30,25 @@ FadeNote(targetAlpha, remainTime);
 
 ## 원인 분석
 
-`FadeIn` 처리와 노트 생성이 같은 프레임에 겹치면 실행 순서에 따라 두 로직 사이에 빈틈이 생겼다. `NoteEffectController`가 `ActiveNoteList`를 순회한 뒤 노트가 등록되면, 신규 노트는 앞서 실행된 `FadeIn`의 적용 대상에서 누락된다.
+`FadeIn` Signal과 노트 생성이 같은 프레임에 실행될 경우, 함수 호출 순서에 따라 문제가 발생할 수 있었다.
 
 ```text
-같은 프레임
-
+FadeOut Signal 완료
+    ↓
+모든 노트가 투명화된 상태
+    ↓
 FadeIn Signal 처리
     ↓
 현재 ActiveNoteList의 노트에 FadeIn 적용
     ↓
-신규 노트 생성 및 ActiveNoteList 등록
+(같은 프레임) 신규 노트 생성 및 ActiveNoteList 등록
     ↓
 신규 노트는 앞선 FadeIn 적용 대상에서 누락
+    ↓
+기존 노트는 정상적으로 출력 / 신규 노트만 투명한 상태
 ```
 
-원인은 `NoteEffectController`의 Fade가 호출 시점의 활성 노트에만 적용되는 일회성 명령이었다는 점이다. 신규 노트의 생성 시점 보정은 정상적으로 동작했지만, 같은 프레임에 실행된 `FadeIn`을 놓친 노트까지 다시 확인하는 과정은 없었다. 같은 프레임 안에서 두 로직이 실행되는 순서에 따라 결과가 달라진 것이 원인이었다
+즉, `FadeIn`이 호출 시점의 활성 노트에만 적용되면서 함수 호출 순서에 따라 일부 신규 노트가 Fade 대상에서 누락될 수 있었다.
 
 ## 문제 해결
 
