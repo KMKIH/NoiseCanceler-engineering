@@ -38,12 +38,17 @@
 ### 문제 해결 기록 (Trouble Shooting)
 | 문제 | 원인 | 해결 방향 | 상세 문서 |
 |---|---|---|---|
+| Timeline FadeIn 시 일부 신규 노트가 보이지 않는 문제 | Signal 처리와 노트 등록이 같은 프레임에 겹쳐 발생한 상태 동기화 누락 | Fade 종료 재동기화와 리비전 검사로 최종 상태 보장 | [Timeline Signal과 노트 생성이 겹칠 때 Fade 상태가 누락되는 문제](docs/trouble-shooting/timeline-note-fade-race-condition.md) |
 | 씬 전환 후 GameManager가 이전 FocusManager를 참조하는 문제 | Additive 로드 중 두 씬이 공존할 때 범위 없는 전역 탐색 수행 | Inspector 참조 또는 현재 씬으로 제한한 탐색 사용 | [Additive 씬 전환 중 이전 씬의 FocusManager를 참조한 문제](docs/trouble-shooting/focus-manager-scene-transition-reference.md) |
 | 음악 시간에 따라 판정 시점이 달라지는 문제 | `AudioSource.time`의 갱신 주기와 렌더링 프레임의 불일치 | DSP 시간을 음악·판정·판정음의 공통 기준으로 사용 | [음악 시간 계산 오차로 인한 판정 정확도 개선](docs/trouble-shooting/rhythm-timing-accuracy.md) |
 ## 관련 코드
 
 | 파일 | 역할 |
 |---|---|
+| [Note.cs](src/rhythm-sync/Note.cs) | 음원 시간 기반 절대 위치 계산과 생성·파괴 시 Fade 상태 처리 |
+| [DataManager.cs](src/rhythm-sync/DataManager.cs) | FMOD 음악 재생 위치를 공통 시간값으로 갱신 |
+| [Sheet.cs](src/rhythm-sync/Sheet.cs) | 정확한 마디 길이와 인덱스로 마디 시작 시각 계산 |
+| [BarInfo.cs](src/rhythm-sync/BarInfo.cs) | 마디와 박자별 노트 판정 시각 구성 |
 | [TimelineActionFacade.cs](src/timeline-action/TimelineActionFacade.cs) | Timeline 연출 기능의 단일 진입점과 Controller 호출 중계 |
 | [NoteEffectController.cs](src/timeline-action/NoteEffectController.cs) | 노트 Fade 상태 관리 |
 | [GlowEffectController.cs](src/timeline-action/GlowEffectController.cs) | 글로우 활성화와 색상·강도 변경 처리 |
