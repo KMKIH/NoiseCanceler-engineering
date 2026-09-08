@@ -63,7 +63,7 @@ public class BarInfo
         m_relativeStartTime = relativeStartTime;
 
         // 데이터 가공 (Calculate Data)
-        m_length = (int)(60f * m_beatPerBar * 1000 / m_bpm);
+        m_length = 60f * m_beatPerBar * 1000 / m_bpm;
         m_lineDenominator = NoteInfos.Values.Select(array => array.Length).Where(x => x != 0).Aggregate(1, (lcm, next) => lcm * next / GCD(lcm, next)); // Line들의 Denominator의 LCM
         m_actionDenominator = 1;
         if (Actions != null && Actions.Count > 0) m_actionDenominator = Actions.Max(action => action.Beat.Denominator); // Action의 Denominator
