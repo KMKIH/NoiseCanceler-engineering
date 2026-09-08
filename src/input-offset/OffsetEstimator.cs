@@ -87,7 +87,6 @@ public static class OffsetEstimator
         float med = Median(xs);
         var absDev = xs.Select(v => Math.Abs(v - med)).ToList();
         float mad = Median(absDev);
-        if (mad <= 1e-12) return new List<float>(xs); // 모두 거의 동일 → 전부 인라이어
 
         // 정규분포 표준편차 근사 스케일: 1.4826 * MAD
         float sigma = 1.4826f * mad;

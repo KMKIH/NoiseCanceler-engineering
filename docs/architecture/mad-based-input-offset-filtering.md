@@ -143,17 +143,6 @@ double hardLimitSec = hardLimitAbsMs / 1000.0;
 xs = xs.Where(v => Math.Abs(v) <= hardLimitSec).ToList();
 ```
 
-### MAD가 0인 경우
-
-동일한 측정값이 반복되어 중앙값과 같은 값이 표본의 다수를 차지하면 MAD가 0이 될 수 있다.
-
-이 상태에서 일반적인 MAD 임계값을 계산하면 허용 범위도 0에 가까워진다. 현재 구현에서는 MAD가 `1e-12` 이하이면 유효한 산포를 계산하기 어려운 경우로 보고 해당 `MadFilter` 호출에서 필터링을 건너뛴다.
-
-```csharp
-if (mad <= 1e-12)
-    return new List<float>(xs);
-```
-
 ### 최소 표본 수와 완화 재시도
 
 Hard Limit을 적용하고 남은 표본 수를 기준으로 최소 유지 표본 수를 계산한다.
@@ -205,8 +194,8 @@ NaN / Infinity 제거
 최소 유지 표본 수 계산
     ↓
 1차 MadFilter 실행(k = 3.5)
-    ├─ MAD ≤ 1e-12 → 전체 입력 반환
-    └─ MAD > 1e-12 → MAD 임계값으로 필터링
+    ↓
+MAD 임계값으로 필터링
     ↓
 결과가 minKeep 이상인가?
     ├─ 예 → 필터 결과의 평균 사용
