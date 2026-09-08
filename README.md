@@ -34,7 +34,6 @@
 | Timeline 연출 Facade 시스템 | 연출 기능을 Controller별로 분리하고 Timeline 호출 경로를 Facade로 통합 | [Timeline 연출 Facade 시스템](docs/architecture/timeline-action-facade.md) |
 | UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [UI Focus Stack 시스템](docs/architecture/ui-focus-stack-system.md) |
 | UI Navigation | `F`·`J`·`Space` 기반 메뉴 이동과 선택 로직 공통화 | [UI Navigation 시스템](docs/architecture/ui-navigation-system.md) |
-| 리듬게임 시간 동기화 및 판정 시스템 | FMOD 음악 위치를 단일 기준으로 사용하고, 입력 판정과 판정음을 같은 오디오 시간축에 동기화 | [FMOD 기반 리듬게임 시간 동기화 및 판정 시스템](docs/architecture/rhythm-game-timing-and-judgement-system.md) |
 
 ### 문제 해결 기록 (Trouble Shooting)
 | 문제 | 원인 | 해결 방향 | 상세 문서 |
@@ -43,7 +42,7 @@
 | Timeline 연출과 FMOD 음원의 시작 시점이 어긋나는 문제 | 음악과 연출의 초기화 과정 결합, Unity와 FMOD의 독립된 시간 기준 | 음원을 사전 로드하고 Timeline Signal에서 재생하며 FMOD 음악 위치를 기준으로 Timeline 보정 | [Timeline 연출과 FMOD 음원 사이의 싱크 개선](docs/trouble-shooting/timeline-fmod-sync.md) |
 | Timeline FadeIn 시 일부 신규 노트가 보이지 않는 문제 | Signal 처리와 노트 등록이 같은 프레임에 겹쳐 발생한 상태 동기화 누락 | Fade 종료 재동기화와 리비전 검사로 최종 상태 보장 | [Timeline Signal과 노트 생성이 겹칠 때 Fade 상태가 누락되는 문제](docs/trouble-shooting/timeline-note-fade-race-condition.md) |
 | 씬 전환 후 GameManager가 이전 FocusManager를 참조하는 문제 | Additive 로드 중 두 씬이 공존할 때 범위 없는 전역 탐색 수행 | GameManager가 얻은 FocusManager 참조를 관련 UI가 공유 | [FocusManager 참조 불일치 문제](docs/trouble-shooting/focus-manager-reference-problem.md) |
-| 음악 시간에 따라 판정 시점이 달라지는 문제 | `AudioSource.time`의 갱신 주기와 렌더링 프레임의 불일치 | DSP 시간을 음악·판정·판정음의 공통 기준으로 사용 | [음악 시간 계산 오차로 인한 판정 정확도 개선](docs/trouble-shooting/rhythm-timing-accuracy.md) |
+
 ## 관련 코드
 
 | 파일 | 역할 |
