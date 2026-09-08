@@ -1,6 +1,6 @@
-# Additive 씬 전환 중 FocusManager 참조 불일치 문제
+# FocusManager 참조 불일치 문제
 
-> 이 문서는 [UI Focus Stack 시스템](../architecture/ui-focus-stack-system.md)에서 발생한 씬 전환 문제를 다룹니다.
+> 이 문서는 [UI Focus Stack 시스템](../architecture/ui-focus-stack-system.md)에서 발생한 씬 전환 문제를 다룬다
 
 ## 개요
 
