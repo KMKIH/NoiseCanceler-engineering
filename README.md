@@ -32,7 +32,9 @@
 |---|---|---|
 | MAD 기반 입력 오프셋 이상치 제거 | 소수 입력 표본에서 MAD 기반으로 이상치를 제거하고 사용자별 입력 오프셋 계산 | [MAD 기반 입력 오프셋 이상치 제거](docs/architecture/mad-based-input-offset-filtering.md) |
 | Timeline 연출 Facade 시스템 | 연출 기능을 Controller별로 분리하고 Timeline 호출 경로를 Facade로 통합 | [Timeline 연출 Facade 시스템](docs/architecture/timeline-action-facade.md) |
-| UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [UI 입력 관리](docs/architecture/ui-focus-stack-system.md) |
+| UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [UI Focus Stack 시스템](docs/architecture/ui-focus-stack-system.md) |
+
+
 | 리듬게임 시간 동기화 및 판정 시스템 | FMOD 음악 위치를 단일 기준으로 사용하고, 입력 판정과 판정음을 같은 오디오 시간축에 동기화 | [FMOD 기반 리듬게임 시간 동기화 및 판정 시스템](docs/architecture/rhythm-game-timing-and-judgement-system.md) |
 
 ### 문제 해결 기록 (Trouble Shooting)
@@ -40,7 +42,7 @@
 |---|---|---|---|
 | 곡 후반으로 갈수록 노트가 음원보다 앞당겨지는 문제 | 노트와 음원이 서로 다른 시간을 참조하고, 정수로 잘린 마디 길이를 누적 계산 | 음원 재생 시간으로 이동 기준을 통일하고 마디 시작 시각을 인덱스로 계산 | [곡 후반으로 갈수록 노트가 음원보다 앞당겨지는 문제](docs/trouble-shooting/note-sync-drift-time-precision.md) |
 | Timeline FadeIn 시 일부 신규 노트가 보이지 않는 문제 | Signal 처리와 노트 등록이 같은 프레임에 겹쳐 발생한 상태 동기화 누락 | Fade 종료 재동기화와 리비전 검사로 최종 상태 보장 | [Timeline Signal과 노트 생성이 겹칠 때 Fade 상태가 누락되는 문제](docs/trouble-shooting/timeline-note-fade-race-condition.md) |
-| 씬 전환 후 GameManager가 이전 FocusManager를 참조하는 문제 | Additive 로드 중 두 씬이 공존할 때 범위 없는 전역 탐색 수행 | Inspector 참조 또는 현재 씬으로 제한한 탐색 사용 | [Additive 씬 전환 중 이전 씬의 FocusManager를 참조한 문제](docs/trouble-shooting/focus-manager-scene-transition-reference-problem.md) |
+| 씬 전환 후 GameManager가 이전 FocusManager를 참조하는 문제 | Additive 로드 중 두 씬이 공존할 때 범위 없는 전역 탐색 수행 | Inspector 참조 또는 현재 씬으로 제한한 탐색 사용 | [FocusManager 참조 불일치 문제](docs/trouble-shooting/focus-manager-reference-problem.md) |
 | 음악 시간에 따라 판정 시점이 달라지는 문제 | `AudioSource.time`의 갱신 주기와 렌더링 프레임의 불일치 | DSP 시간을 음악·판정·판정음의 공통 기준으로 사용 | [음악 시간 계산 오차로 인한 판정 정확도 개선](docs/trouble-shooting/rhythm-timing-accuracy.md) |
 ## 관련 코드
 
