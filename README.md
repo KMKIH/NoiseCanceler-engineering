@@ -33,6 +33,7 @@
 | MAD 기반 입력 오프셋 이상치 제거 | 소수 입력 표본에서 MAD 기반으로 이상치를 제거하고 사용자별 입력 오프셋 계산 | [MAD 기반 입력 오프셋 이상치 제거](docs/architecture/mad-based-input-offset-filtering.md) |
 | Timeline 연출 Facade 시스템 | 연출 기능을 Controller별로 분리하고 Timeline 호출 경로를 Facade로 통합 | [Timeline 연출 Facade 시스템](docs/architecture/timeline-action-facade.md) |
 | UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [UI Focus Stack 시스템](docs/architecture/ui-focus-stack-system.md) |
+| UI Navigation | `F`·`J`·`Space` 기반 메뉴 이동과 선택 로직 공통화 | [UI Navigation 시스템](docs/architecture/ui-navigation-system.md) |
 | 리듬게임 시간 동기화 및 판정 시스템 | FMOD 음악 위치를 단일 기준으로 사용하고, 입력 판정과 판정음을 같은 오디오 시간축에 동기화 | [FMOD 기반 리듬게임 시간 동기화 및 판정 시스템](docs/architecture/rhythm-game-timing-and-judgement-system.md) |
 
 ### 문제 해결 기록 (Trouble Shooting)
@@ -58,6 +59,8 @@
 | [OffsetEstimator.cs](src/input-offset/OffsetEstimator.cs) | MAD 기반 이상치 제거와 대표 오프셋 계산 |
 | [FocusManager.cs](src/ui-focus/FocusManager.cs) | Stack 기반 UI 포커스 등록·해제 및 현재 입력 대상 판별 |
 | [IFocusable.cs](src/ui-focus/IFocusable.cs) | 포커스 진입·획득·해제 이벤트 인터페이스 |
+| [INavigationButton.cs](src/ui-navigation/INavigationButton.cs) | UI 버튼의 Normal·Highlight·Press·Release 상태 전환 표준화 |
+| [NavigationButtonController.cs](src/ui-navigation/NavigationButtonController.cs) | 활성 버튼 목록, 선택 인덱스, 순환 이동과 선택 입력 관리 |
 
 ## 공개 범위와 제한
 
