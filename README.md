@@ -31,6 +31,7 @@
 | 시스템 | 핵심 설계 | 상세 문서 |
 |---|---|---|
 | MAD 기반 입력 오프셋 이상치 제거 | 소수 입력 표본에서 MAD 기반으로 이상치를 제거하고 사용자별 입력 오프셋 계산 | [입력 오프셋 보정 시스템 초안](mad-based-input-offset-filtering.md) |
+| Timeline 연출 Facade 시스템 | 연출 기능을 Controller별로 분리하고 Timeline 호출 경로를 Facade로 통합 | [Timeline 연출 Facade 시스템](docs/architecture/timeline-action-facade.md) |
 | UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [UI 입력 관리](docs/architecture/ui-focus-stack-system.md) |
 | 리듬게임 시간 동기화 및 판정 시스템 | FMOD 음악 위치를 단일 기준으로 사용하고, 입력 판정과 판정음을 같은 오디오 시간축에 동기화 | [FMOD 기반 리듬게임 시간 동기화 및 판정 시스템](docs/architecture/rhythm-game-timing-and-judgement-system.md) |
 
@@ -43,6 +44,10 @@
 
 | 파일 | 역할 |
 |---|---|
+| [TimelineActionFacade.cs](src/timeline-action/TimelineActionFacade.cs) | Timeline 연출 기능의 단일 진입점과 Controller 호출 중계 |
+| [NoteEffectController.cs](src/timeline-action/NoteEffectController.cs) | 노트 Fade 상태 관리 |
+| [GlowEffectController.cs](src/timeline-action/GlowEffectController.cs) | 글로우 활성화와 색상·강도 변경 처리 |
+| [ShakeEffectController.cs](src/timeline-action/ShakeEffectController.cs) | 판정 시 화면 흔들림 상태와 실행 매개변수 관리 |
 | [OffsetEstimator.cs](src/input-offset/OffsetEstimator.cs) | MAD 기반 이상치 제거와 대표 오프셋 계산 |
 | [FocusManager.cs](src/ui-focus/FocusManager.cs) | Stack 기반 UI 포커스 등록·해제 및 현재 입력 대상 판별 |
 | [IFocusable.cs](src/ui-focus/IFocusable.cs) | 포커스 진입·획득·해제 이벤트 인터페이스 |
