@@ -26,4 +26,4 @@
 
 - [`IFocusable.cs`](../../src/ui-focus/IFocusable.cs)
 - [`FocusManager.cs`](../../src/ui-focus/FocusManager.cs)
-- [Additive 씬 전환 중 FocusManager 참조 불일치 문제](../trouble-shooting/focus-manager-scene-transition-reference.md)
+- [FocusManager 참조 불일치 문제](../trouble-shooting/focus-manager-reference-problem.md)
