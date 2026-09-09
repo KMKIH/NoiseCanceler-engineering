@@ -57,9 +57,9 @@ public class UpdateManager : MonoBehaviour
 }
 ```
 
-Unity는 **[Script Execution Order](https://docs.unity3d.com/kr/current/Manual/script-execution-order.html)** 설정으로 `MonoBehaviour` 사이의 실행 순서를 지정할 수 있다. 하지만 해당 설정은 실제 로직과 떨어진 Project Settings에서 관리되므로, 리듬 게임의 처리 흐름을 코드와 게임 오브젝트만으로 파악하기 어렵다.
+## 도입 배경
 
-별도의 Custom Update 시스템을 사용하면 실행 대상과 순서를 `UpdateManager`의 인스펙터에서 직접 확인하고 조정할 수 있다. 또한 업데이트 흐름이 하나의 진입점에 모이기 때문에 시스템을 추가하거나 순서를 변경할 때 전체 처리 과정을 명시적으로 관리할 수 있다.
+Unity는 [Script Execution Order](https://docs.unity3d.com/kr/current/Manual/script-execution-order.html) 설정으로 MonoBehaviour 사이의 실행 순서를 지정할 수 있다. 하지만 처리 흐름을 빠르게 파악할 수 있도록 별도의 Custom Update 시스템을 사용했다.
 
 ## 관련 코드
 
