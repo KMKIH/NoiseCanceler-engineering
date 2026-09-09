@@ -99,12 +99,6 @@ optionButton.Initialize(
 
 단순 메뉴에서는 버튼마다 별도 기능 클래스를 만들지 않고도 씬 전환이나 팝업 열기 같은 짧은 동작을 선언할 수 있다. 버튼의 표현은 버튼 구현체에, 화면 전환 흐름은 해당 화면 Controller에 남으므로 기능이 사용되는 위치도 바로 확인할 수 있다.
 
-### FocusManager와의 역할 분리
-
-중첩된 UI 중 어느 화면이 입력을 받을지는 Navigation 시스템이 직접 판단하지 않는다. 각 화면은 [`FocusManager`](ui-focus-stack-system.md)를 통해 자신이 최상단 UI인지 확인한 뒤에만 `HandleNavigation`을 호출한다.
-
-따라서 FocusManager는 **입력을 받을 화면**을 결정하고, NavigationButtonController는 그 화면 안에서 **입력을 받을 버튼**을 결정한다. 화면 간 입력 우선순위와 화면 내부의 선택 이동을 분리해 두 시스템의 책임이 겹치지 않도록 했다.
-
 ## 옵션 조작 모드
 
 옵션 화면에서는 같은 `F`, `J` 입력이 두 가지 의미로 사용된다.
