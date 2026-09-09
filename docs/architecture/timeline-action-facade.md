@@ -73,19 +73,6 @@ TimelineActionFacade
 - 기획자에게 Timeline에서 사용할 수 있는 함수만 한곳에 노출해 Signal 설정 과정을 단순화하기 위함
 - 외부 호출 지점은 유지하면서 내부 Controller를 교체하거나 수정할 수 있게 하기 위함
 
-### 연출 상태와 실행 요청의 중계
-
-[구현 방식]
-
-- Facade는 노트 투명 여부, Fade 시작 시각과 지속 시간, 흔들림 활성 여부를 각 Controller에서 가져와 제공한다
-- 양쪽 노트에 같은 Fade를 적용하는 요청은 Facade에서 좌·우 Controller 함수를 조합해 전달한다
-- 실제 노트와 라인은 Facade가 제공한 상태와 실행 함수를 사용해 현재 연출을 반영한다
-
-[선택 이유]
-
-- Timeline용 호출 API와 게임 오브젝트가 참조하는 연출 상태의 접근 경로를 통일하기 위함
-- 호출자는 상태가 어느 Controller에 저장되는지 알 필요 없이 Facade만 참조할 수 있게 하기 위함
-
 ## 관련 코드
 
 - [`TimelineActionFacade`](../../src/timeline-action/TimelineActionFacade.cs)
