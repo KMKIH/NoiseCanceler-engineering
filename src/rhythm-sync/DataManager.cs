@@ -7,7 +7,7 @@ using UnityEngine;
 // Data 전처리 및 Global Data 관리
 // 최초 작성자: 김기홍
 // 수정자: 
-// 최종 수정일: 2026-06-05
+// 최종 수정일: 2026-05-12
 public class DataManager : Updateable, IPauseable
 {
     ////////////////////////////////////////////
@@ -77,7 +77,9 @@ public class DataManager : Updateable, IPauseable
     {
         if (m_sheetData != null && m_isPaused == false)
         {
-            m_playManager.SongEventInstance.getTimelinePosition(out m_sheetData.songPosition);
+            var instance = m_playManager.SongEventInstance;
+            if (instance.isValid() && instance.getTimelinePosition(out int positionMs) == FMOD.RESULT.OK)
+                m_sheetData.songPosition = positionMs;
         }
     }
     private void OnDestroy()

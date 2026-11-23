@@ -43,11 +43,15 @@
 | Timeline 연출과 FMOD 음원의 시작 시점이 어긋나는 문제 | 음악과 연출의 초기화 과정 결합, Unity와 FMOD의 독립된 시간 기준 | 음원을 사전 로드하고 Timeline Signal에서 재생하며 FMOD 음악 위치를 기준으로 Timeline 보정 | [Timeline 연출과 FMOD 음원 사이의 싱크 개선](docs/trouble-shooting/timeline-fmod-sync.md) |
 | Timeline FadeIn 시 일부 신규 노트가 보이지 않는 문제 | Signal 처리와 노트 등록이 같은 프레임에 겹쳐 발생한 상태 동기화 누락 | Fade 종료 재동기화와 리비전 검사로 최종 상태 보장 | [Timeline Signal과 노트 생성이 겹칠 때 Fade 상태가 누락되는 문제](docs/trouble-shooting/timeline-note-fade-race-condition.md) |
 | 씬 전환 후 GameManager가 이전 FocusManager를 참조하는 문제 | Additive 로드 중 두 씬이 공존할 때 범위 없는 전역 탐색 수행 | GameManager가 얻은 FocusManager 참조를 관련 UI가 공유 | [FocusManager 참조 불일치 문제](docs/trouble-shooting/focus-manager-reference-problem.md) |
+| Timeline 연출과 FMOD 음원 사이의 싱크 개선 | 음원과 연출의 시작 시점 및 재생 중 편차를 FMOD 사전 로드와 Timeline 시간 보정으로 개선 | [**상&#8288;세**](docs/trouble-shooting/timeline-fmod-sync.md) |
 
 ## 관련 코드
 
 | 파일 | 역할 |
 |---|---|
+| [PlayManager.cs](src/rhythm-sync/PlayManager.cs) | 음원 프리로드, Signal 기반 별도 재생과 Timeline 주기 보정 |
+| [CustomFMODEventTrack.cs](src/rhythm-sync/CustomFMODEventTrack.cs) | 실험용 트랙에서 FMOD 인스턴스를 재생하고 PlayManager에 연결 |
+| [CustomFMODEventClip.cs](src/rhythm-sync/CustomFMODEventClip.cs) | 트랙에서 재생할 이벤트, 음원 시작 위치와 음량 설정 |
 | [Updateable.cs](src/custom-update/Updateable.cs) | 순서 제어 대상이 구현할 `CustomUpdate()` 정의 |
 | [UpdateManager.cs](src/custom-update/UpdateManager.cs) | 등록된 `Updateable`을 인스펙터 순서대로 실행 |
 | [Note.cs](src/rhythm-sync/Note.cs) | 음원 시간 기반 절대 위치 계산과 생성·파괴 시 Fade 상태 처리 |
