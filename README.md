@@ -1,4 +1,4 @@
-# NoiseCanceler Engineering
+# Noise Canceler 기술 문서
 
 `Noise Canceler` 프로젝트에서 구현한 주요 시스템과 코드, 개발 중 겪은 문제와 해결 과정을 정리했습니다.
 
@@ -13,37 +13,30 @@
 | 담당 역할 | Unity 클라이언트 개발 전반 |
 | 사용 기술 | Unity 6 (`6000.0.67f1`), C#, FMOD, Addressables |
 
-## 저장소 구성
-```text
-├─ README.md
-├─ src/
-└─ docs/
-   ├─ architecture/
-   └─ trouble-shooting/
-```
-- `src/`: 일부 공개 코드
-- `docs/architecture/`: 구조, 책임 분리, 주요 의사결정
-- `docs/trouble-shooting/`: 증상, 원인 분석, 수정 내용, 검증, 회고
+## 주요 개발 사례
 
-## 주요 내용
+| 분류 | 주제 | 요약 | 링크 |
+|---|---|---|---|
+| 문제 해결 | Timeline 연출과 FMOD 음원 사이의 싱크 개선 | 음원과 연출의 시작 시점 및 재생 중 편차를 FMOD 사전 로드와 Timeline 시간 보정으로 개선 | [**상&#8288;세**](docs/trouble-shooting/timeline-fmod-sync.md) |
+
+## 전체 문서
 
 ### 시스템 설계
-| 시스템 | 핵심 설계 | 상세 문서 |
+| 주제 | 요약 | 링크 |
 |---|---|---|
-| Custom Update 시스템 | 음악 시간 갱신, 입력, 판정을 명시적인 순서로 실행 | [Custom Update 시스템](docs/architecture/custom-update-system.md) |
-| MAD 기반 입력 오프셋 이상치 제거 | 소수 입력 표본에서 MAD 기반으로 이상치를 제거하고 사용자별 입력 오프셋 계산 | [MAD 기반 입력 오프셋 이상치 제거](docs/architecture/mad-based-input-offset-filtering.md) |
-| Timeline 연출 Facade 시스템 | 연출 기능을 Controller별로 분리하고 Timeline 호출 경로를 Facade로 통합 | [Timeline 연출 Facade 시스템](docs/architecture/timeline-action-facade.md) |
-| UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [UI Focus Stack 시스템](docs/architecture/ui-focus-stack-system.md) |
-| UI Navigation | `F`·`J`·`Space` 기반 메뉴 이동과 선택 로직 공통화 | [UI Navigation 시스템](docs/architecture/ui-navigation-system.md) |
+| Custom Update 시스템 | 음악 시간 갱신, 입력, 판정을 명시적인 순서로 실행 | [**상&#8288;세**](docs/architecture/custom-update-system.md) |
+| MAD 기반 입력 오프셋 이상치 제거 | 소수 입력 표본에서 MAD 기반으로 이상치를 제거하고 사용자별 입력 오프셋 계산 | [**상&#8288;세**](docs/architecture/mad-based-input-offset-filtering.md) |
+| Timeline 연출 Facade 시스템 | 연출 기능을 Controller별로 분리하고 Timeline 호출 경로를 Facade로 통합 | [**상&#8288;세**](docs/architecture/timeline-action-facade.md) |
+| UI 입력 관리 | 중첩된 UI를 Stack으로 관리해 최상단 UI에만 입력 권한 부여 | [**상&#8288;세**](docs/architecture/ui-focus-stack-system.md) |
+| UI Navigation | `F`·`J`·`Space` 기반 메뉴 이동과 선택 로직 공통화 | [**상&#8288;세**](docs/architecture/ui-navigation-system.md) |
 
 ### 문제 해결 기록 (Trouble Shooting)
-| 문제 | 원인 | 해결 방향 | 상세 문서 |
-|---|---|---|---|
-| 곡 후반으로 갈수록 노트가 음원보다 앞당겨지는 문제 | 정수로 잘린 마디 길이를 누적 계산해 채보 시간이 점차 앞당겨짐 | 음원 재생 시간으로 이동 기준을 통일하고 마디 시작 시각을 인덱스로 계산 | [곡 후반으로 갈수록 노트가 음원보다 앞당겨지는 문제](docs/trouble-shooting/note-judgment-timing-drift.md) |
-| Timeline 연출과 FMOD 음원의 시작 시점이 어긋나는 문제 | 음악과 연출의 초기화 과정 결합, Unity와 FMOD의 독립된 시간 기준 | 음원을 사전 로드하고 Timeline Signal에서 재생하며 FMOD 음악 위치를 기준으로 Timeline 보정 | [Timeline 연출과 FMOD 음원 사이의 싱크 개선](docs/trouble-shooting/timeline-fmod-sync.md) |
-| Timeline FadeIn 시 일부 신규 노트가 보이지 않는 문제 | Signal 처리와 노트 등록이 같은 프레임에 겹쳐 발생한 상태 동기화 누락 | Fade 종료 재동기화와 리비전 검사로 최종 상태 보장 | [Timeline Signal과 노트 생성이 겹칠 때 Fade 상태가 누락되는 문제](docs/trouble-shooting/timeline-note-fade-race-condition.md) |
-| 씬 전환 후 GameManager가 이전 FocusManager를 참조하는 문제 | Additive 로드 중 두 씬이 공존할 때 범위 없는 전역 탐색 수행 | GameManager가 얻은 FocusManager 참조를 관련 UI가 공유 | [FocusManager 참조 불일치 문제](docs/trouble-shooting/focus-manager-reference-problem.md) |
+| 주제 | 요약 | 링크 |
+|---|---|---|
 | Timeline 연출과 FMOD 음원 사이의 싱크 개선 | 음원과 연출의 시작 시점 및 재생 중 편차를 FMOD 사전 로드와 Timeline 시간 보정으로 개선 | [**상&#8288;세**](docs/trouble-shooting/timeline-fmod-sync.md) |
+| 곡이 진행될수록 노트 판정 시점이 앞당겨지는 문제 | 정수 절삭으로 누적된 채보 시간 오차를 음원 시간 기반 이동과 인덱스 기반 마디 시작 시각 계산으로 개선 | [**상&#8288;세**](docs/trouble-shooting/note-judgment-timing-drift.md) |
+| Fade In 중 새 노트가 보이지 않는 문제 | Signal 처리와 노트 등록이 겹칠 때 누락된 Fade 상태를 종료 재동기화와 리비전 검사로 보완 | [**상&#8288;세**](docs/trouble-shooting/timeline-note-fade-race-condition.md) |
+| 씬 전환 후 이전 씬의 FocusManager를 참조하는 문제 | Additive 씬 로드 중 전역 탐색으로 발생한 참조 불일치를 GameManager의 FocusManager 참조 공유로 해결 | [**상&#8288;세**](docs/trouble-shooting/focus-manager-reference-problem.md) |
 
 ## 관련 코드
 
@@ -67,6 +60,20 @@
 | [IFocusable.cs](src/ui-focus/IFocusable.cs) | 포커스 진입·획득·해제 이벤트 인터페이스 |
 | [INavigationButton.cs](src/ui-navigation/INavigationButton.cs) | UI 버튼의 Normal·Highlight·Press·Release 상태 전환 표준화 |
 | [NavigationButtonController.cs](src/ui-navigation/NavigationButtonController.cs) | 활성 버튼 목록, 선택 인덱스, 순환 이동과 선택 입력 관리 |
+
+## 저장소 구성
+```text
+├─ README.md
+├─ src/
+└─ docs/
+   ├─ architecture/
+   ├─ data/
+   └─ trouble-shooting/
+```
+- `src/`: 일부 공개 코드
+- `docs/architecture/`: 구조, 책임 분리, 주요 의사결정
+- `docs/data/`: 실험 조건과 측정 결과
+- `docs/trouble-shooting/`: 증상, 원인 분석, 수정 내용, 검증, 회고
 
 ## 공개 범위와 제한
 
