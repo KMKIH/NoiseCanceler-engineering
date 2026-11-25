@@ -137,8 +137,28 @@ Timeline의 Update Method를 Manual로 설정한 방식은 FMOD 재생 위치를
 
 ### 시연 영상
 
-- [Editor Preview (목표 연출)](../../assets/videos/ch5-ep2-editor-preview.mp4)
-- [최종 Play Mode (개선 방식 적용 결과)](../../assets/videos/ch5-ep2-play-mode-final.mp4)
+<table>
+  <thead>
+    <tr>
+      <th width="50%">Editor Preview (목표 연출)</th>
+      <th width="50%">최종 Play Mode (개선 방식 적용 결과)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <video src="https://github.com/user-attachments/assets/afd42389-094f-416e-84ff-7f347b5dd33c" width="100%" controls></video>
+        <br>
+        <a href="../../assets/videos/ch5-ep2-editor-preview.mp4">원본 MP4</a>
+      </td>
+      <td>
+        <video src="https://github.com/user-attachments/assets/94d0d6d8-45a8-4f6b-975d-1b87c3145af9" width="100%" controls></video>
+        <br>
+        <a href="../../assets/videos/ch5-ep2-play-mode-final.mp4">원본 MP4</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## 측정 범위와 한계
 
