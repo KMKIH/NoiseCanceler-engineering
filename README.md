@@ -65,19 +65,22 @@
 ```text
 ├─ README.md
 ├─ src/
-└─ docs/
-   ├─ architecture/
-   ├─ data/
-   └─ trouble-shooting/
+├─ docs/
+│  ├─ architecture/
+│  ├─ data/
+│  └─ trouble-shooting/
+└─ assets/
+   └─ videos/
 ```
 - `src/`: 일부 공개 코드
 - `docs/architecture/`: 구조, 책임 분리, 주요 의사결정
 - `docs/data/`: 실험 조건과 측정 결과
 - `docs/trouble-shooting/`: 증상, 원인 분석, 수정 내용, 검증, 회고
+- `assets/videos/`: 기술 문서에 사용한 시연 영상
 
 ## 공개 범위와 제한
 
-- 전체 Unity 프로젝트가 아닌 선별 코드와 기술 문서만 포함합니다.
+- 프로젝트에서 선별한 코드, 기술 문서, 시연 영상을 포함합니다.
 - 게임 에셋, 데이터, 상용 플러그인, 제3자 코드, 민감 정보는 공개하지 않습니다.
 - 프로젝트 전용 타입과 외부 의존성 일부가 생략되어 단독 실행과 빌드를 지원하지 않습니다.
 - 공동 작업이 포함된 사례는 각 문서에 기여 범위를 명시합니다.
